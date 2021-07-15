@@ -1,6 +1,7 @@
 export const fetchWrapper = {
     get,
     post,
+    postArray,
     put,
     delete: _delete
 };
@@ -17,6 +18,15 @@ function post(url, body) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
+    };
+    return fetch(url, requestOptions).then(handleResponse);
+}
+
+function postArray(url, formData) {
+    var requestOptions = {
+        method: 'POST',
+        body: formData,
+        redirect: 'follow'
     };
     return fetch(url, requestOptions).then(handleResponse);
 }
